@@ -13,10 +13,8 @@ import {
   RkAvoidKeyboard,
   RkStyleSheet,
   RkTheme,
+  RkSwitch,
 } from 'react-native-ui-kitten';
-import {
-  RkSwitch
-} from '../../components';
 import {
   StackActions,
   NavigationActions,
@@ -115,7 +113,7 @@ class LoginV1 extends React.Component {
       {this.renderImage()}
       <View style={styles.header}>
       <RkText rkType='logo h0' style={styles.logo}>EpEasy</RkText>
-      {this.props.login.error ? (<RkText rkType='h5' style={styles.error}><Icon name="exclamation-circle" size={30} color={theme.colors.screen.danger} /> Request failed with status code {this.props.login.error.response.status}</RkText>) : (<View></View>) }
+      {this.props.login.error ? (<RkText rkType='h5' style={styles.error}><Icon name="exclamation-circle" style={styles.icon} /> Request failed with status code {this.props.login.error.response.status}</RkText>) : (<View></View>) }
       </View>
       <View style={styles.container}>
         <RkTextInput rkType='rounded' placeholder='Email' />
@@ -141,6 +139,10 @@ class LoginV1 extends React.Component {
 }
 
 const styles = RkStyleSheet.create(theme => ({
+  icon: {
+    color: theme.colors.background,
+    fontSize: 20,
+  },
   row: {
     flexDirection: 'row',
     marginBottom: scaleVertical(24),
