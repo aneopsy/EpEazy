@@ -1,6 +1,6 @@
 # EpEasy
 
-A perfect Eapitech App
+A perfect Epitech App
 
 - Login
 - Profil

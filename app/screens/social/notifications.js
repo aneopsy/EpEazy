@@ -70,34 +70,40 @@ class Notifications extends React.Component {
         keyExtractor={this.extractItemKey}
       />
     ) : (
-      <RkText>
-        <RkText rkType="primary2">No message</RkText>
-      </RkText>
+      <View style={styles.textContent}>
+        <RkText rkType="light" style={styles.paragraph}>No message</RkText>
+      </View>
     );
 
-  alertRoute = () => (
-    <FlatList
-      style={styles.root}
-      data={this.props.alert}
-      renderItem={this.renderItem}
-      keyExtractor={this.extractItemKey}
-    />
-  );
+  alertRoute = () => 
+    (this.props.alert.length !== 0) ? (
+      <FlatList
+        style={styles.root}
+        data={this.props.alert}
+        renderItem={this.renderItem}
+        keyExtractor={this.extractItemKey}
+      />
+    ) : (
+      <View style={styles.textContent}>
+        <RkText rkType="light" style={styles.paragraph}>No Alert</RkText>
+      </View>
+    );
 
-  comingRoute = () => (
-    <FlatList
-      style={styles.root}
-      data={this.props.coming}
-      renderItem={this.renderItem}
-      keyExtractor={this.extractItemKey}
-    />
-  );
+  comingRoute = () =>
+    (this.props.coming.length !== 0) ? (
+      <FlatList
+        style={styles.root}
+        data={this.props.coming}
+        renderItem={this.renderItem}
+        keyExtractor={this.extractItemKey}
+      />
+    ) : (
+      <View style={styles.textContent}>
+        <RkText rkType="light" style={styles.paragraph}>No Coming</RkText>
+      </View>
+    );
 
   render() {
-    console.log("message", this.props.message)
-    console.log("message", this.props.message.length)
-    console.log("alert", this.props.alert)
-    console.log("alert", this.props.alert.length)
     return (
       <TabView
         navigationState={this.state}
@@ -117,6 +123,11 @@ class Notifications extends React.Component {
 }
 
 const styles = RkStyleSheet.create(theme => ({
+  paragraph: {
+    textAlign: 'center',
+    alignSelf: 'center',
+    justifyContent: 'center',
+  },
   root: {
     backgroundColor: theme.colors.screen.base
   },
@@ -125,7 +136,7 @@ const styles = RkStyleSheet.create(theme => ({
     flexDirection: "row",
     borderBottomWidth: 1,
     borderColor: theme.colors.border.base,
-    alignItems: "flex-start"
+    justifyContent: 'flex-start',
   },
   avatar: {
     alignSelf: "center"
@@ -139,6 +150,12 @@ const styles = RkStyleSheet.create(theme => ({
     marginRight: 0
   },
   mainContent: {},
+  textContent: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#ecf0f1',
+    padding: 8,
+  },
   img: {
     height: 50,
     width: 50,
