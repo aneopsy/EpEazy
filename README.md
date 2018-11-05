@@ -10,6 +10,20 @@ A perfect Epitech App
 - Dashboard
 - Notification
 
+## How to start
+
+1. Go to _app/config/_
+2. Rename **appPrivateConstants_Default** to **appPrivateConstants**
+3. Edit **login** and **password**, it's for debug purpose, this file will be not pushed (.gitignore)
+4. Install depedencies
+   ```JS
+   $ npm install
+   ```
+5. Run app
+   ```JS
+   $ npm start
+   ```
+
 ## Made with help of
 
 - [react-native](https://github.com/facebook/react-native)
