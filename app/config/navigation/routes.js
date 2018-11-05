@@ -255,6 +255,13 @@ export const MainRoutes = [
     icon: FontIcons.theme,
     screen: Screens.Themes,
     children: [],
+  },
+  {
+    id: 'Modules',
+    title: 'Modules',
+    icon: FontIcons.theme,
+    screen: Screens.Modules,
+    children: [],
   }
 ];
 
