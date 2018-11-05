@@ -61,7 +61,7 @@ class ProfileV2 extends React.Component {
       </View>
       <View style={styles.userInfo}>
         <View style={styles.section}>
-          <RkText rkType='header3' style={styles.space}>{this.props.profile.credits}</RkText>
+          <RkText rkType='header3' style={styles.space}>{this.props.profile.spice.available_spice}</RkText>
           <RkText rkType='secondary1 hintColor'>Spice</RkText>
         </View>
         <View style={styles.section}>
@@ -69,8 +69,12 @@ class ProfileV2 extends React.Component {
           <RkText rkType='secondary1 hintColor'>Credits</RkText>
         </View>
         <View style={styles.section}>
-          <RkText rkType='header3' style={styles.space}>{this.props.profile.credits}</RkText>
-          <RkText rkType='secondary1 hintColor'>GPA</RkText>
+          <View style={styles.gpa}>
+            <View>
+              {this.props.profile.gpa.map((item, index) => <RkText rkType='header5' key={index}>{item.gpa}</RkText>)}
+            </View>
+            <RkText rkType='secondary1 hintColor' style={{marginLeft: 20}}>GPA</RkText>
+          </View>
         </View>
       </View>
       <RkCard>
@@ -95,7 +99,11 @@ const styles = RkStyleSheet.create(theme => ({
   },
   row: {
     flexDirection: 'row',
-
+  },
+  gpa: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   userInfo: {
     flexDirection: 'row',
