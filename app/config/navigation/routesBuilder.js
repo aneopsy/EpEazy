@@ -96,3 +96,6 @@ export const EcommerceRoutes = _.find(MainRoutes, {
 export const OtherRoutes = _.find(MainRoutes, {
   id: 'OtherMenu'
 }).children;
+export const ModuleRoutes = _.find(MainRoutes, {
+  id: 'Modules'
+}).children;

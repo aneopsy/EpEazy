@@ -21,6 +21,7 @@ import NavigationType from '../../config/navigation/propTypes';
 import { connect } from 'react-redux';
 import { getProfile } from '../../redux/profile/reducer';
 import { getNotificationMessage, getNotificationAlert, getNotificationComing } from '../../redux/notifications/action';
+import { getModules, getActivities } from '../../redux/modules/action'
 
 const delay = 50;
 
@@ -35,6 +36,9 @@ class loadingScreen extends React.Component {
       {f: this.props.getNotificationMessage(), r: this.props.notification.message},
       {f: this.props.getNotificationAlert(), r: this.props.notification.alert},
       {f: this.props.getNotificationComing(), r: this.props.notification.coming},
+      {f: this.props.getModules(), r: this.props.modules},
+      {f: this.props.getActivities(), r: this.props.activities},
+
     ]
   }
 
@@ -124,6 +128,7 @@ const mapStateToProps = state => {
   return {
     profile: state.Profile.profile,
     notification: state.Notifications,
+    modules: state.Modules
   };
 };
 
@@ -132,6 +137,8 @@ const mapDispatchToProps = {
   getNotificationMessage,
   getNotificationAlert,
   getNotificationComing,
+  getModules,
+  getActivities,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(loadingScreen);
