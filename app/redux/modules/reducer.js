@@ -7,9 +7,8 @@ export const GET_ACTIVITIES_SUCCESS = 'GET_ACTIVITIES_SUCCESS';
 export const GET_ACTIVITIES_FAIL = 'GET_ACTIVITIES_FAIL';
 
 export default function reducer(state = {
-        message: [],
-        alert: [],
-        coming: [],
+        activities: [],
+        modules: [],
 }, action) {
     switch (action.type) {
         //MESSAGE
@@ -21,7 +20,7 @@ export default function reducer(state = {
             {
                 return { ...state,
                     loading: false,
-                    message: Object.keys(action.payload.data).length ? action.payload.data : []
+                    modules: Object.keys(action.payload.data).length ? action.payload.data : []
                 };
             }
         case GET_MODULES_FAIL:
@@ -39,7 +38,7 @@ export default function reducer(state = {
             {
                 return { ...state,
                     loading: false,
-                    alert: Object.keys(action.payload.data).length ? action.payload.data : []
+                    activities: Object.keys(action.payload.data).length ? action.payload.data : []
                 };
             }
         case GET_ACTIVITIES_FAIL:
