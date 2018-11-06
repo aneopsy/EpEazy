@@ -149,7 +149,7 @@ const styles = RkStyleSheet.create(theme => ({
     backgroundColor: theme.colors.screen.base
   },
   tabbar: {
-    backgroundColor: "#555"
+    backgroundColor: theme.colors.screen.alter
   },
   tab: {
     width: 120
@@ -158,7 +158,7 @@ const styles = RkStyleSheet.create(theme => ({
     backgroundColor: "#555"
   },
   label: {
-    color: "#fff",
+    color: theme.colors.text.base,
     fontWeight: "400"
   },
   container: {
