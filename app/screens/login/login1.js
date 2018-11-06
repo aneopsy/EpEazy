@@ -1,11 +1,5 @@
-import React from 'react';
-import {
-  View,
-  Image,
-  Dimensions,
-  Keyboard,
-  StatusBar,
-} from 'react-native';
+import React from "react";
+import { View, Image, Dimensions, Keyboard, StatusBar } from "react-native";
 import {
   RkButton,
   RkText,
@@ -13,50 +7,48 @@ import {
   RkAvoidKeyboard,
   RkStyleSheet,
   RkTheme,
-  RkSwitch,
-} from 'react-native-ui-kitten';
-import {
-  StackActions,
-  NavigationActions,
-} from 'react-navigation';
-import { connect } from 'react-redux';
-import Spinner from 'react-native-loading-spinner-overlay';
+  RkSwitch
+} from "react-native-ui-kitten";
+import { StackActions, NavigationActions } from "react-navigation";
+import { connect } from "react-redux";
+import Spinner from "react-native-loading-spinner-overlay";
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { GradientButton } from '../../components/gradientButton';
-import { scaleModerate, scaleVertical } from '../../utils/scale';
-import NavigationType from '../../config/navigation/propTypes';
-import { PasswordTextInput } from '../../components/passwordTextInput';
+import Icon from "react-native-vector-icons/FontAwesome";
+import { GradientButton } from "../../components/gradientButton";
+import { scaleModerate, scaleVertical } from "../../utils/scale";
+import NavigationType from "../../config/navigation/propTypes";
+import { PasswordTextInput } from "../../components/passwordTextInput";
 import {
   userLogin,
   userLoginError,
-  rememberMe } from '../../redux/login/action';
-import { privateConstants } from '../../config/appPrivateConstants';
+  rememberMe
+} from "../../redux/login/action";
+import { privateConstants } from "../../config/appPrivateConstants";
 
 class LoginV1 extends React.Component {
   static propTypes = {
-    navigation: NavigationType.isRequired,
+    navigation: NavigationType.isRequired
   };
   static navigationOptions = {
-    header: null,
+    header: null
   };
 
   componentDidMount() {
-    StatusBar.setHidden(true, 'none');
+    StatusBar.setHidden(true, "none");
   }
 
-  getThemeImageSource = (theme) => (
-    theme.name === 'light' ?
-      require('../../assets/images/backgroundLoginV1.png') : require('../../assets/images/backgroundLoginV1DarkTheme.png')
-  );
+  getThemeImageSource = theme =>
+    theme.name === "light"
+      ? require("../../assets/images/backgroundLoginV1.png")
+      : require("../../assets/images/backgroundLoginV1DarkTheme.png");
 
   renderImage = () => {
-    const screenSize = Dimensions.get('window');
+    const screenSize = Dimensions.get("window");
     const imageSize = {
       width: screenSize.width,
-      height: screenSize.height - scaleModerate(375, 1),
+      height: screenSize.height - scaleModerate(375, 1)
     };
-    
+
     return (
       <Image
         style={[styles.image, imageSize]}
@@ -66,7 +58,10 @@ class LoginV1 extends React.Component {
   };
 
   onLoginButtonPressed = () => {
-    this.props.userLogin({login: privateConstants.login, password: privateConstants.password})
+    this.props.userLogin({
+      login: privateConstants.login,
+      password: privateConstants.password
+    });
     // .then().catch((error) => {
     //   console.log(error) ||
     //   this.props.userLoginError(error.error)
@@ -74,52 +69,61 @@ class LoginV1 extends React.Component {
   };
 
   onSignUpButtonPressed = () => {
-    this.props.navigation.navigate('SignUp');
+    this.props.navigation.navigate("SignUp");
   };
 
   transferToDashboardIfLoggedIn() {
-      if (this.props.login.user && this.props.login.isLoggingIn) {
-        const toHome = StackActions.reset({
-          index: 0,
-          actions: [NavigationActions.navigate({ routeName: 'Loading' })],
-        });
-        this.props.navigation.dispatch(toHome);
-      }
+    if (this.props.login.user && this.props.login.isLoggingIn) {
+      const toHome = StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: "Loading" })]
+      });
+      this.props.navigation.dispatch(toHome);
+    }
   }
 
   componentWillMount() {
-      this.transferToDashboardIfLoggedIn();
+    this.transferToDashboardIfLoggedIn();
   }
 
   componentDidUpdate() {
-      this.transferToDashboardIfLoggedIn();
+    this.transferToDashboardIfLoggedIn();
   }
 
-  onRememberMeChanged = (value) => {
-    console.log("ok")
-    this.props.rememberMe(value)
+  onRememberMeChanged = value => {
+    this.props.rememberMe(value);
   };
 
   render = () => (
     <RkAvoidKeyboard
       style={styles.screen}
       onStartShouldSetResponder={() => true}
-      onResponderRelease={() => Keyboard.dismiss()}>
+      onResponderRelease={() => Keyboard.dismiss()}
+    >
       <Spinner
-          visible={this.props.login.loading}
-          textContent={'Connection...'}
-          textStyle={styles.spinnerTextStyle}
+        visible={this.props.login.loading}
+        textContent={"Connection..."}
+        textStyle={styles.spinnerTextStyle}
       />
       {this.renderImage()}
       <View style={styles.header}>
-      <RkText rkType='logo h0' style={styles.logo}>EpEasy</RkText>
-      {this.props.login.error ? (<RkText rkType='h5' style={styles.error}><Icon name="exclamation-circle" style={styles.icon} /> Request failed with status code {this.props.login.error.response.status}</RkText>) : (<View></View>) }
+        <RkText rkType="logo h0" style={styles.logo}>
+          EpEasy
+        </RkText>
+        {this.props.login.error ? (
+          <RkText rkType="h5" style={styles.error}>
+            <Icon name="exclamation-circle" style={styles.icon} /> Request
+            failed with status code {this.props.login.error.response.status}
+          </RkText>
+        ) : (
+          <View />
+        )}
       </View>
       <View style={styles.container}>
-        <RkTextInput rkType='rounded' placeholder='Email' />
-        <PasswordTextInput placeholder='Password' />
+        <RkTextInput rkType="rounded" placeholder="Email" />
+        <PasswordTextInput placeholder="Password" />
         <View style={styles.row}>
-          <RkText rkType='h5'>Remember me:</RkText>
+          <RkText rkType="h5">Remember me:</RkText>
           <RkSwitch
             style={styles.switch}
             value={this.props.login.rememberMe}
@@ -129,92 +133,95 @@ class LoginV1 extends React.Component {
         </View>
         <GradientButton
           style={styles.save}
-          rkType='large'
+          rkType="large"
           onPress={this.onLoginButtonPressed}
-          text='LOGIN'
+          text="LOGIN"
         />
       </View>
     </RkAvoidKeyboard>
-  )
+  );
 }
 
 const styles = RkStyleSheet.create(theme => ({
   icon: {
     color: theme.colors.background,
-    fontSize: 20,
+    fontSize: 20
   },
   row: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginBottom: scaleVertical(24),
-    justifyContent: 'flex-end',
-    alignSelf: 'flex-end',
-    alignItems: 'flex-end',
+    justifyContent: "flex-end",
+    alignSelf: "flex-end",
+    alignItems: "flex-end"
   },
   switch: {
     marginLeft: 20,
-    alignSelf: 'flex-end',
+    alignSelf: "flex-end"
   },
   spinnerTextStyle: {
-    color: '#FFF'
+    color: "#FFF"
   },
   error: {
     padding: 10,
     backgroundColor: theme.colors.screen.danger,
-    color: '#FFF',
-    margin: scaleVertical(5),
-},
+    color: "#FFF",
+    margin: scaleVertical(5)
+  },
   screen: {
     flex: 1,
-    alignItems: 'center',
-    backgroundColor: theme.colors.screen.base,
+    alignItems: "center",
+    backgroundColor: theme.colors.screen.base
   },
   image: {
-    resizeMode: 'cover',
-    marginBottom: scaleVertical(5),
+    resizeMode: "cover",
+    marginBottom: scaleVertical(5)
   },
   container: {
     paddingHorizontal: 18,
     paddingBottom: scaleVertical(50),
-    alignItems: 'center',
+    alignItems: "center",
     flex: -1,
     paddingTop: 5
   },
   header: {
     paddingBottom: scaleVertical(20),
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    flex: 1
   },
   footer: {
-    justifyContent: 'flex-end',
-    flex: 1,
+    justifyContent: "flex-end",
+    flex: 1
   },
   buttons: {
-    flexDirection: 'row',
-    marginBottom: scaleVertical(24),
+    flexDirection: "row",
+    marginBottom: scaleVertical(24)
   },
   button: {
-    marginHorizontal: 14,
+    marginHorizontal: 14
   },
   save: {
-    marginVertical: 20,
+    marginVertical: 20
   },
   textRow: {
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
+    justifyContent: "center",
+    flexDirection: "row"
+  }
 }));
 
 const mapStateToProps = state => {
   return {
-    login: state.Login,
+    login: state.Login
   };
 };
 
 const mapDispatchToProps = {
   userLogin,
   userLoginError,
-  rememberMe,
+  rememberMe
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginV1);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginV1);
