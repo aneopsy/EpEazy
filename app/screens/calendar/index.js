@@ -1,1 +1,1 @@
-export * from './calendar.js';
+export { default as Planning } from "./planning.js";

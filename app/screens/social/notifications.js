@@ -62,7 +62,7 @@ class Notifications extends React.Component {
   );
 
   messageRoute = () =>
-    (this.props.message.length !== 0) ? (
+    this.props.message.length !== 0 ? (
       <FlatList
         style={styles.root}
         data={this.props.message}
@@ -71,12 +71,14 @@ class Notifications extends React.Component {
       />
     ) : (
       <View style={styles.textContent}>
-        <RkText rkType="light" style={styles.paragraph}>No message</RkText>
+        <RkText rkType="light" style={styles.paragraph}>
+          No message
+        </RkText>
       </View>
     );
 
-  alertRoute = () => 
-    (this.props.alert.length !== 0) ? (
+  alertRoute = () =>
+    this.props.alert.length !== 0 ? (
       <FlatList
         style={styles.root}
         data={this.props.alert}
@@ -85,12 +87,14 @@ class Notifications extends React.Component {
       />
     ) : (
       <View style={styles.textContent}>
-        <RkText rkType="light" style={styles.paragraph}>No Alert</RkText>
+        <RkText rkType="light" style={styles.paragraph}>
+          No Alert
+        </RkText>
       </View>
     );
 
   comingRoute = () =>
-    (this.props.coming.length !== 0) ? (
+    this.props.coming.length !== 0 ? (
       <FlatList
         style={styles.root}
         data={this.props.coming}
@@ -99,9 +103,21 @@ class Notifications extends React.Component {
       />
     ) : (
       <View style={styles.textContent}>
-        <RkText rkType="light" style={styles.paragraph}>No Coming</RkText>
+        <RkText rkType="light" style={styles.paragraph}>
+          No Coming
+        </RkText>
       </View>
     );
+
+  _renderTabBar = props => (
+    <TabBar
+      {...props}
+      indicatorStyle={styles.indicator}
+      style={styles.tabbar}
+      tabStyle={styles.tab}
+      labelStyle={styles.label}
+    />
+  );
 
   render() {
     return (
@@ -117,6 +133,7 @@ class Notifications extends React.Component {
           width: Dimensions.get("window").width,
           height: Dimensions.get("window").height
         }}
+        renderTabBar={this._renderTabBar}
       />
     );
   }
@@ -124,19 +141,32 @@ class Notifications extends React.Component {
 
 const styles = RkStyleSheet.create(theme => ({
   paragraph: {
-    textAlign: 'center',
-    alignSelf: 'center',
-    justifyContent: 'center',
+    textAlign: "center",
+    alignSelf: "center",
+    justifyContent: "center"
   },
   root: {
     backgroundColor: theme.colors.screen.base
   },
+  tabbar: {
+    backgroundColor: "#555"
+  },
+  tab: {
+    width: 120
+  },
+  indicator: {
+    backgroundColor: "#555"
+  },
+  label: {
+    color: "#fff",
+    fontWeight: "400"
+  },
   container: {
     padding: 16,
     flexDirection: "row",
-    borderBottomWidth: 1,
+    borderWidth: 1,
     borderColor: theme.colors.border.base,
-    justifyContent: 'flex-start',
+    justifyContent: "flex-start"
   },
   avatar: {
     alignSelf: "center"
@@ -152,9 +182,9 @@ const styles = RkStyleSheet.create(theme => ({
   mainContent: {},
   textContent: {
     flex: 1,
-    justifyContent: 'center',
-    backgroundColor: '#ecf0f1',
-    padding: 8,
+    justifyContent: "center",
+    backgroundColor: theme.colors.screen.alter,
+    padding: 8
   },
   img: {
     height: 50,
@@ -171,7 +201,7 @@ const mapStateToProps = state => {
   return {
     message: state.Notifications.message,
     alert: state.Notifications.alert,
-    coming: state.Notifications.coming,
+    coming: state.Notifications.coming
   };
 };
 
