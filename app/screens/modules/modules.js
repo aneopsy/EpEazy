@@ -4,26 +4,26 @@ import { connect } from "react-redux";
 import { RkStyleSheet, RkText } from "react-native-ui-kitten";
 import { TabView, TabBar, SceneMap } from "react-native-tab-view";
 
-import { getNotificationMessage } from "../../redux/notifications/action";
+import { getModules, getActivities } from "../../redux/modules/action";
 
 const moment = require("moment");
 
-class Notifications extends React.Component {
+class Modules extends React.Component {
   static navigationOptions = {
-    title: "Notifications"
+    title: "Modules and activities"
   };
 
   state = {
     index: 0,
     routes: [
-      { key: "message", title: "Message" },
-      { key: "alert", title: "Alert" },
-      { key: "coming", title: "Coming" }
+      { key: "modules", title: "Modules" },
+      { key: "activities", title: "Activities" }
     ]
   };
 
   componentDidMount() {
-    this.props.getNotificationMessage();
+    this.props.getModules();
+    this.props.getActivities();
   }
 
   extractItemKey = item => `${item.id}`;
@@ -37,7 +37,7 @@ class Notifications extends React.Component {
     );
   };
 
-  renderItem = ({ item }) => (
+  renderModuleItem = ({ item }) => (
     <View style={styles.container}>
       {/* <Avatar
         img={{uri: item.user.picture}}
@@ -47,93 +47,74 @@ class Notifications extends React.Component {
       <View style={styles.content}>
         <View style={styles.mainContent}>
           <View style={styles.text}>
-            <RkText>
-              <RkText rkType="header6">{item.title}</RkText>
-            </RkText>
-            <RkText>
-              <RkText rkType="primary2">{item.content}</RkText>
-            </RkText>
+              <RkText rkType="header6">{item.acti_title}</RkText>
           </View>
-          <RkText rkType="secondary5 hintColor">{item.date}</RkText>
         </View>
         {this.renderAttachment(item)}
       </View>
     </View>
   );
 
-  messageRoute = () =>
-    this.props.message.length !== 0 ? (
-      <FlatList
-        style={styles.root}
-        data={this.props.message}
-        renderItem={this.renderItem}
-        keyExtractor={this.extractItemKey}
-      />
-    ) : (
-      <View style={styles.textContent}>
-        <RkText rkType="light" style={styles.paragraph}>
-          No message
-        </RkText>
+  renderActivitiesItem = ({ item }) => (
+    <View style={styles.container}>
+      {/* <Avatar
+        img={{uri: item.user.picture}}
+        rkType='circle'
+        style={styles.avatar}
+      /> */}
+      <View style={styles.content}>
+        <View style={styles.mainContent}>
+          <View style={styles.text}>
+              <RkText rkType="header6">{item.title}</RkText>
+          </View>
+        </View>
+        {this.renderAttachment(item)}
       </View>
-    );
-
-  alertRoute = () =>
-    this.props.alert.length !== 0 ? (
-      <FlatList
-        style={styles.root}
-        data={this.props.alert}
-        renderItem={this.renderItem}
-        keyExtractor={this.extractItemKey}
-      />
-    ) : (
-      <View style={styles.textContent}>
-        <RkText rkType="light" style={styles.paragraph}>
-          No Alert
-        </RkText>
-      </View>
-    );
-
-  comingRoute = () =>
-    this.props.coming.length !== 0 ? (
-      <FlatList
-        style={styles.root}
-        data={this.props.coming}
-        renderItem={this.renderItem}
-        keyExtractor={this.extractItemKey}
-      />
-    ) : (
-      <View style={styles.textContent}>
-        <RkText rkType="light" style={styles.paragraph}>
-          No Coming
-        </RkText>
-      </View>
-    );
-
-  _renderTabBar = props => (
-    <TabBar
-      {...props}
-      indicatorStyle={styles.indicator}
-      style={styles.tabbar}
-      tabStyle={styles.tab}
-      labelStyle={styles.label}
-    />
+    </View>
   );
+
+  modulesRoute = () =>
+    (this.props.modules.length !== 0) ? (
+      <FlatList
+        style={styles.root}
+        data={this.props.modules}
+        renderItem={this.renderModuleItem}
+        keyExtractor={this.extractItemKey}
+      />
+    ) : (
+      <View style={styles.textContent}>
+        <RkText rkType="light" style={styles.paragraph}>No message</RkText>
+      </View>
+    );
+
+  activitiesRoute = () => 
+    (this.props.activities.length !== 0) ? (
+      <FlatList
+        style={styles.root}
+        data={this.props.activities}
+        renderItem={this.renderActivitiesItem}
+        keyExtractor={this.extractItemKey}
+      />
+    ) : (
+      <View style={styles.textContent}>
+        <RkText rkType="light" style={styles.paragraph}>No Alert</RkText>
+      </View>
+    );
+
 
   render() {
     return (
       <TabView
         navigationState={this.state}
         renderScene={SceneMap({
-          message: this.messageRoute,
-          alert: this.alertRoute,
-          coming: this.comingRoute
+          modules: this.modulesRoute,
+          activities: this.activitiesRoute
         })}
         onIndexChange={index => this.setState({ index })}
         initialLayout={{
           width: Dimensions.get("window").width,
           height: Dimensions.get("window").height
         }}
-        renderTabBar={this._renderTabBar}
       />
     );
   }
@@ -141,32 +122,19 @@ class Notifications extends React.Component {
 
 const styles = RkStyleSheet.create(theme => ({
   paragraph: {
-    textAlign: "center",
-    alignSelf: "center",
-    justifyContent: "center"
+    textAlign: 'center',
+    alignSelf: 'center',
+    justifyContent: 'center',
   },
   root: {
     backgroundColor: theme.colors.screen.base
   },
-  tabbar: {
-    backgroundColor: "#555"
-  },
-  tab: {
-    width: 120
-  },
-  indicator: {
-    backgroundColor: "#555"
-  },
-  label: {
-    color: "#fff",
-    fontWeight: "400"
-  },
   container: {
     padding: 16,
     flexDirection: "row",
-    borderWidth: 1,
+    borderBottomWidth: 1,
     borderColor: theme.colors.border.base,
-    justifyContent: "flex-start"
+    justifyContent: 'flex-start',
   },
   avatar: {
     alignSelf: "center"
@@ -182,9 +150,9 @@ const styles = RkStyleSheet.create(theme => ({
   mainContent: {},
   textContent: {
     flex: 1,
-    justifyContent: "center",
-    backgroundColor: theme.colors.screen.alter,
-    padding: 8
+    justifyContent: 'center',
+    backgroundColor: '#ecf0f1',
+    padding: 8,
   },
   img: {
     height: 50,
@@ -199,17 +167,17 @@ const styles = RkStyleSheet.create(theme => ({
 
 const mapStateToProps = state => {
   return {
-    message: state.Notifications.message,
-    alert: state.Notifications.alert,
-    coming: state.Notifications.coming
+    modules: state.Modules.modules,
+    activities: state.Modules.activities.items,
   };
 };
 
 const mapDispatchToProps = {
-  getNotificationMessage
+  getModules,
+  getActivities,
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Notifications);
+)(Modules);

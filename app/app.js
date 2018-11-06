@@ -22,7 +22,11 @@ import { store, persistor } from './redux/store'
 
 bootstrap();
 data.populateData();
-console.ignoredYellowBox = ['Warning: Failed prop type: Invalid props.style key `fontSize` supplied to `View`'];
+console.ignoredYellowBox = [
+  'Warning: Failed prop type: Invalid props.style key `fontSize` supplied to `View`',
+  'Warning: Failed prop type: Invalid props.style key `container` supplied to `View`',
+  'Warning: Failed prop type: Invalid props.style key `fontSize` supplied to `RkButton`'
+];
 
 const { width } = Dimensions.get('window');
 

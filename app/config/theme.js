@@ -178,6 +178,7 @@ export const KittenTheme = {
       h4: scale(18),
       h5: scale(16),
       h6: scale(15),
+      h7: scale(13),
       p1: scale(16),
       p2: scale(15),
       p3: scale(15),

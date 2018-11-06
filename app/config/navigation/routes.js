@@ -1,269 +1,286 @@
-import _ from 'lodash';
-import { FontIcons } from '../../assets/icons';
-import * as Screens from '../../screens/index';
+import _ from "lodash";
+import { FontIcons } from "../../assets/icons";
+import * as Screens from "../../screens/index";
 
 export const MainRoutes = [
   {
-    id: 'LoginMenu',
-    title: 'Auth',
+    id: "LoginMenu",
+    title: "Auth",
     icon: FontIcons.login,
     screen: Screens.LoginMenu,
     children: [
       {
-        id: 'Login1',
-        title: 'Login V1',
+        id: "Login1",
+        title: "Login V1",
         screen: Screens.LoginV1,
-        children: [],
+        children: []
       },
       {
-        id: 'Login2',
-        title: 'Login V2',
+        id: "Login2",
+        title: "Login V2",
         screen: Screens.LoginV2,
-        children: [],
+        children: []
       },
       {
-        id: 'SignUp',
-        title: 'Sign Up',
+        id: "SignUp",
+        title: "Sign Up",
         screen: Screens.SignUp,
-        children: [],
+        children: []
       },
       {
-        id: 'password',
-        title: 'Password Recovery',
+        id: "password",
+        title: "Password Recovery",
         screen: Screens.PasswordRecovery,
-        children: [],
-      },
-    ],
+        children: []
+      }
+    ]
   },
   {
-    id: 'SocialMenu',
-    title: 'Social',
+    id: "SocialMenu",
+    title: "Social",
     icon: FontIcons.profile,
     screen: Screens.SocialMenu,
     children: [
       {
-        id: 'ProfileV1',
-        title: 'User Profile V1',
+        id: "ProfileV1",
+        title: "User Profile V1",
         screen: Screens.ProfileV1,
-        children: [],
+        children: []
       },
       {
-        id: 'ProfileV2',
-        title: 'User Profile V2',
+        id: "ProfileV2",
+        title: "User Profile V2",
         screen: Screens.ProfileV2,
-        children: [],
+        children: []
       },
       {
-        id: 'ProfileV3',
-        title: 'User Profile V3',
+        id: "ProfileV3",
+        title: "User Profile V3",
         screen: Screens.ProfileV3,
-        children: [],
+        children: []
       },
       {
-        id: 'ProfileSettings',
-        title: 'Profile Settings',
+        id: "ProfileSettings",
+        title: "Profile Settings",
         screen: Screens.ProfileSettings,
-        children: [],
+        children: []
       },
       {
-        id: 'Notifications',
-        title: 'Notifications',
+        id: "Notifications",
+        title: "Notifications",
         screen: Screens.Notifications,
-        children: [],
+        children: []
       },
       {
-        id: 'Contacts',
-        title: 'Contacts',
+        id: "Contacts",
+        title: "Contacts",
         screen: Screens.Contacts,
-        children: [],
+        children: []
       },
       {
-        id: 'Feed',
-        title: 'Feed',
+        id: "Feed",
+        title: "Feed",
         screen: Screens.Feed,
-        children: [],
-      },
-    ],
+        children: []
+      }
+    ]
   },
   {
-    id: 'ArticlesMenu',
-    title: 'Articles',
+    id: "ArticlesMenu",
+    title: "Articles",
     icon: FontIcons.article,
     screen: Screens.ArticleMenu,
     children: [
       {
-        id: 'Articles1',
-        title: 'Article List V1',
+        id: "Articles1",
+        title: "Article List V1",
         screen: Screens.Articles1,
-        children: [],
+        children: []
       },
       {
-        id: 'Articles2',
-        title: 'Article List V2',
+        id: "Articles2",
+        title: "Article List V2",
         screen: Screens.Articles2,
-        children: [],
+        children: []
       },
       {
-        id: 'Articles3',
-        title: 'Article List V3',
+        id: "Articles3",
+        title: "Article List V3",
         screen: Screens.Articles3,
-        children: [],
+        children: []
       },
       {
-        id: 'Articles4',
-        title: 'Article List V4',
+        id: "Articles4",
+        title: "Article List V4",
         screen: Screens.Articles4,
-        children: [],
+        children: []
       },
       {
-        id: 'Blogposts',
-        title: 'Blogposts',
+        id: "Blogposts",
+        title: "Blogposts",
         screen: Screens.Blogposts,
-        children: [],
+        children: []
       },
       {
-        id: 'Article',
-        title: 'Article View',
+        id: "Article",
+        title: "Article View",
         screen: Screens.Article,
-        children: [],
-      },
-    ],
+        children: []
+      }
+    ]
   },
   {
-    id: 'MessagingMenu',
-    title: 'Messaging',
+    id: "MessagingMenu",
+    title: "Messaging",
     icon: FontIcons.mail,
     screen: Screens.MessagingMenu,
     children: [
       {
-        id: 'Chat',
-        title: 'Chat',
+        id: "Chat",
+        title: "Chat",
         screen: Screens.Chat,
-        children: [],
+        children: []
       },
       {
-        id: 'ChatList',
-        title: 'Chat List',
+        id: "ChatList",
+        title: "Chat List",
         screen: Screens.ChatList,
-        children: [],
+        children: []
       },
       {
-        id: 'Comments',
-        title: 'Comments',
+        id: "Comments",
+        title: "Comments",
         screen: Screens.Comments,
-        children: [],
-      },
-    ],
+        children: []
+      }
+    ]
   },
   {
-    id: 'DashboardsMenu',
-    title: 'Dashboards',
+    id: "DashboardsMenu",
+    title: "Dashboards",
     icon: FontIcons.dashboard,
     screen: Screens.DashboardMenu,
-    children: [{
-      id: 'Dashboard',
-      title: 'Dashboard',
-      screen: Screens.Dashboard,
-      children: [],
-    }],
+    children: [
+      {
+        id: "Dashboard",
+        title: "Dashboard",
+        screen: Screens.Dashboard,
+        children: []
+      }
+    ]
   },
   {
-    id: 'WalkthroughMenu',
-    title: 'Walkthroughs',
+    id: "WalkthroughMenu",
+    title: "Walkthroughs",
     icon: FontIcons.mobile,
     screen: Screens.WalkthroughMenu,
-    children: [{
-      id: 'Walkthrough',
-      title: 'Walkthrough',
-      screen: Screens.WalkthroughScreen,
-      children: [],
-    }],
+    children: [
+      {
+        id: "Walkthrough",
+        title: "Walkthrough",
+        screen: Screens.WalkthroughScreen,
+        children: []
+      }
+    ]
   },
   {
-    id: 'EcommerceMenu',
-    title: 'Ecommerce',
+    id: "EcommerceMenu",
+    title: "Ecommerce",
     icon: FontIcons.card,
     screen: Screens.EcommerceMenu,
     children: [
       {
-        id: 'Cards',
-        title: 'Cards',
+        id: "Cards",
+        title: "Cards",
         icon: FontIcons.card,
         screen: Screens.Cards,
-        children: [],
+        children: []
       },
       {
-        id: 'AddToCardForm',
-        title: 'Add Card Form',
+        id: "AddToCardForm",
+        title: "Add Card Form",
         icon: FontIcons.addToCardForm,
         screen: Screens.AddToCardForm,
-        children: [],
-      },
-
-    ],
+        children: []
+      }
+    ]
   },
   {
-    id: 'NavigationMenu',
+    id: "NavigationMenu",
     icon: FontIcons.navigation,
-    title: 'Navigation',
+    title: "Navigation",
     screen: Screens.NavigationMenu,
     children: [
       {
-        id: 'GridV1',
-        title: 'Grid Menu V1',
+        id: "GridV1",
+        title: "Grid Menu V1",
         screen: Screens.GridV1,
-        children: [],
+        children: []
       },
       {
-        id: 'GridV2',
-        title: 'Grid Menu V2',
+        id: "GridV2",
+        title: "Grid Menu V2",
         screen: Screens.GridV2,
-        children: [],
+        children: []
       },
       {
-        id: 'List',
-        title: 'List Menu',
+        id: "List",
+        title: "List Menu",
         screen: Screens.ListMenu,
-        children: [],
+        children: []
       },
       {
-        id: 'Side',
-        title: 'Side Menu',
-        action: 'DrawerOpen',
+        id: "Side",
+        title: "Side Menu",
+        action: "DrawerOpen",
         screen: Screens.SideMenu,
-        children: [],
-      },
-    ],
+        children: []
+      }
+    ]
   },
   {
-    id: 'OtherMenu',
-    title: 'Other',
+    id: "OtherMenu",
+    title: "Other",
     icon: FontIcons.other,
     screen: Screens.OtherMenu,
     children: [
       {
-        id: 'Settings',
-        title: 'Settings',
+        id: "Settings",
+        title: "Settings",
         screen: Screens.Settings,
-        children: [],
-      },
-    ],
+        children: []
+      }
+    ]
   },
   {
-    id: 'Themes',
-    title: 'Themes',
+    id: "Themes",
+    title: "Themes",
     icon: FontIcons.theme,
     screen: Screens.Themes,
-    children: [],
+    children: []
+  },
+  {
+    id: "Modules",
+    title: "Modules",
+    icon: FontIcons.theme,
+    screen: Screens.Modules,
+    children: []
+  },
+  {
+    id: "Calendar",
+    title: "Calendar",
+    icon: FontIcons.theme,
+    screen: Screens.Planning,
+    children: []
   }
 ];
 
 const menuRoutes = _.cloneDeep(MainRoutes);
 menuRoutes.unshift({
-  id: 'GridV2',
-  title: 'Start',
+  id: "GridV2",
+  title: "Start",
   screen: Screens.GridV2,
-  children: [],
+  children: []
 });
 
 export const MenuRoutes = menuRoutes;
